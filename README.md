@@ -6,17 +6,16 @@ Sets up a container with jenkins installed listening on port 8080.
 
 To run the container, do the following:
 
-    docker run -d -P aespinosa/jenkins
+    export JENKINS_PORT=12345 #where 12345 is the port that you want jenkins to listen on.
+    export JENKINS_DIR=~/$(whoami)-jenkins
+    docker run -d -P ${PORT}:8080 -v ${JENKINS_DIR}:/jenkins russell/jenkins
     
-    docker ps
-    CONTAINER ID        IMAGE                       COMMAND                CREATED             STATUS              PORTS                     NAMES
-    1131d37c38b1        aespinosa/jenkins:latest    java -jar /opt/jenki   12 seconds ago      Up 12 seconds       0.0.0.0:49153->8080/tcp   drunk_fermi
-
-Your jenkins instance is now available by going to http://localhost:49153 .
+Your jenkins instance is now available by going to http://localhost:12345 .
 
 ### Persistent Configuration
 
 By default, JENKINS_HOME is set to /jenkins.  The best way to persist or import configuration is to have a separate data volume for /jenkins.  Below are a few references on data volumes.
+By following the above, this will be mounted to ~/yourname-jenkins/
 
   * https://docs.docker.com/userguide/dockervolumes/
   * http://aespinosa.github.io/blog/2014-03-05-import-jenkins-configuration-to-docker.html
@@ -26,21 +25,23 @@ By default, JENKINS_HOME is set to /jenkins.  The best way to persist or import 
 
 To build the image, simply invoke
 
-    docker build github.com/aespinosa/docker-jenkins
+    docker build github.com/Russell-IO/docker-jenkins
 
 A prebuilt container is also available in the docker index
 
-    docker pull aespinosa/jenkins
+    docker pull russell/jenkins
 
 
 ## Author
 
   * Allan Espinosa (<allan.espinosa@outlook.com>)
   * Gwenn Etourneau (<g.etourneau@free.fr>)
+  * Russell Clare (<Russell@Clare.io>)
 
 ## LICENSE
 
-Copyright 2013 Allan Espinosa
+Copyright 2013 Allan Espinosa <br>
+Copyright 2014 Russell Clare
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

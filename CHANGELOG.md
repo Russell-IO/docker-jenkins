@@ -1,3 +1,8 @@
+## 1.0.0
+  * Forked to Russell-IO
+  * Changed prefix to /jenkins as I will be proxying this on ssl via a sub directory
+  * Changed to grab latest jenkins war file
+
 ## 0.4.0
   * Upgrade to Jenkins 1.551
   * Simplify exposed volume to /jenkins
